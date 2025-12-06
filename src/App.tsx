@@ -99,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
             </div>
             <input 
               type="text" 
-              placeholder="Search documentation..." 
+              placeholder="Rechercher..." 
               className="block w-full pl-10 pr-3 py-1.5 border border-slate-200 dark:border-brand-border rounded-md leading-5 bg-slate-100 dark:bg-brand-darker text-slate-900 dark:text-brand-text placeholder-slate-500 dark:placeholder-brand-muted focus:outline-none focus:ring-1 focus:ring-brand-accent focus:border-brand-accent sm:text-sm transition-all"
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -109,7 +109,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
         </div>
 
         <div className="flex items-center gap-4 sm:gap-6">
-          {/* Theme Toggle Switch */}
           <button 
             onClick={toggleTheme}
             className={`
@@ -146,10 +145,10 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
           <div className="h-4 w-px bg-slate-200 dark:bg-brand-border hidden sm:block"></div>
 
           <div className="flex items-center gap-4">
-            <a href="https://github.com/Orochichrys" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
+            <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
               <i className="fa-brands fa-github"></i>
             </a>
-            <a href="https://npmjs.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
+            <a href="https://www.npmjs.com/package/create-my-site" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
               <i className="fa-brands fa-npm"></i>
             </a>
           </div>
@@ -171,7 +170,6 @@ const Sidebar: React.FC<{ isOpen: boolean, onClose: () => void, activeSection: s
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-sm"
@@ -179,7 +177,6 @@ const Sidebar: React.FC<{ isOpen: boolean, onClose: () => void, activeSection: s
         />
       )}
 
-      {/* Sidebar Content */}
       <aside className={`
         fixed top-16 bottom-0 left-0 w-64 bg-white dark:bg-brand-dark border-r border-slate-200 dark:border-brand-border z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -190,7 +187,7 @@ const Sidebar: React.FC<{ isOpen: boolean, onClose: () => void, activeSection: s
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={() => onClose()} // Close mobile menu on click
+              onClick={() => onClose()}
               className={`
                 flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all
                 ${activeSection === item.id 
@@ -239,12 +236,12 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, code, fileName }) => {
             {copied ? (
               <>
                 <i className="fa-solid fa-check"></i>
-                Copied!
+                Copié !
               </>
             ) : (
               <>
                 <i className="fa-regular fa-copy"></i>
-                Copy
+                Copier
               </>
             )}
           </button>
@@ -335,15 +332,16 @@ const TemplateCard: React.FC<{ title: string, desc: string, icon: string, featur
 );
 
 const FileTree: React.FC = () => {
-  const structure = `mon-projet/
-├── .git/
-├── .gitignore
-├── index.html
+  // Structure mise à jour selon index.js
+  const structure = `mon-site-web/
+├── .git/               # Initialisé automatiquement
+├── .gitignore          # Exclut node_modules, etc.
+├── index.html          # Page principale
 ├── css/
-│   └── style.css
+│   └── style.css       # Styles générés
 ├── js/
-│   └── script.js
-└── img/`;
+│   └── script.js       # Script JS de base
+└── img/                # Dossier images (vide)`;
 
   return (
     <div className="font-mono text-sm bg-slate-900 dark:bg-brand-darker border border-slate-700 dark:border-brand-border p-6 rounded-xl text-slate-300 dark:text-brand-muted leading-relaxed">
@@ -360,7 +358,6 @@ const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
   const [currentVersion, setCurrentVersion] = useState('v1.0.0');
 
-  // Handle Theme
   useEffect(() => {
     const root = window.document.documentElement;
     if (isDark) {
@@ -372,7 +369,6 @@ const App: React.FC = () => {
 
   const toggleTheme = () => setIsDark(!isDark);
 
-  // Handle active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section');
@@ -418,28 +414,28 @@ const App: React.FC = () => {
               Bienvenue sur la documentation officielle de <span className="text-slate-900 dark:text-white font-semibold">create-my-site</span>.
             </p>
             <p className="mb-6">
-              <strong className="text-brand-accent">create-my-site</strong> est un outil CLI (Command Line Interface) conçu pour générer instantanément l'architecture de sites statiques simples, sans la complexité des bundlers modernes.
+              <strong className="text-brand-accent">create-my-site</strong> est le <strong>Générateur de Site Web Ultime</strong>. Il permet d'échafauder des projets web complets en quelques secondes, avec gestion automatique de Git et des frameworks CSS.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mt-8">
               <div className="p-4 bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border rounded-lg shadow-sm">
                 <i className="fa-solid fa-bolt text-yellow-500 dark:text-yellow-400 mb-2 text-xl"></i>
                 <h4 className="font-bold text-slate-900 dark:text-white mb-1">Ultra Rapide</h4>
-                <p className="text-sm text-slate-500 dark:text-brand-muted">Générez un projet statique prêt à l'emploi en moins de 2 secondes.</p>
+                <p className="text-sm text-slate-500 dark:text-brand-muted">Crée dossiers, fichiers HTML/CSS/JS et initie Git en 2 secondes.</p>
               </div>
               <div className="p-4 bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border rounded-lg shadow-sm">
-                <i className="fa-solid fa-feather text-blue-500 dark:text-blue-400 mb-2 text-xl"></i>
-                <h4 className="font-bold text-slate-900 dark:text-white mb-1">Zéro Dépendance</h4>
-                <p className="text-sm text-slate-500 dark:text-brand-muted">Pas de node_modules dans le projet généré. Juste du HTML/CSS/JS.</p>
+                <i className="fa-brands fa-git-alt text-orange-500 dark:text-orange-400 mb-2 text-xl"></i>
+                <h4 className="font-bold text-slate-900 dark:text-white mb-1">Git Ready</h4>
+                <p className="text-sm text-slate-500 dark:text-brand-muted">Lance `git init` et génère un `.gitignore` automatiquement.</p>
               </div>
             </div>
           </Section>
 
           <Section id="installation" title="Installation">
             <p className="mb-4">
-              Vous pouvez utiliser l'outil directement via <code className="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-sm text-brand-accent font-mono">npx</code> (recommandé) ou l'installer globalement sur votre machine.
+              Vous pouvez utiliser l'outil directement via <code className="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-sm text-brand-accent font-mono">npx</code> (recommandé) ou l'installer globalement.
             </p>
             
-            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Méthode Recommandée (Sans installation)</h3>
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Méthode Recommandée</h3>
             <TerminalBlock command="npx create-my-site" />
 
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Installation Globale</h3>
@@ -448,14 +444,14 @@ const App: React.FC = () => {
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg flex gap-3">
               <i className="fa-solid fa-circle-info text-blue-500 dark:text-blue-400 mt-0.5"></i>
               <div className="text-sm text-blue-800 dark:text-blue-200">
-                <strong>Note :</strong> Node.js version 16.0.0 ou supérieure est requise pour utiliser le CLI, même si le site généré n'en a pas besoin.
+                <strong>Requis :</strong> Node.js doit être installé sur votre machine.
               </div>
             </div>
           </Section>
 
           <Section id="guide" title="Guide de Démarrage">
             <p className="mb-6">
-              Une fois la commande lancée, un assistant interactif vous guidera pour créer votre architecture.
+              L'outil pose 3 questions simples pour configurer votre projet sur mesure.
             </p>
 
             <ol className="relative border-l border-slate-200 dark:border-brand-border ml-3 space-y-8">
@@ -463,34 +459,51 @@ const App: React.FC = () => {
                 <span className="absolute flex items-center justify-center w-8 h-8 bg-white dark:bg-brand-darker rounded-full -left-4 ring-4 ring-slate-50 dark:ring-brand-dark border border-brand-accent text-brand-accent">
                   1
                 </span>
-                <h3 className="flex items-center mb-1 text-lg font-semibold text-slate-900 dark:text-white">Lancer le CLI</h3>
-                <p className="mb-4 text-sm text-slate-500 dark:text-brand-muted">Ouvrez votre terminal et lancez la commande.</p>
-                <TerminalBlock command="npx create-my-site mon-projet" />
+                <h3 className="flex items-center mb-1 text-lg font-semibold text-slate-900 dark:text-white">Questions Interactives</h3>
+                <p className="mb-4 text-sm text-slate-500 dark:text-brand-muted">Le CLI vous guidera à travers ces étapes :</p>
+                {/* CodeBlock mis à jour pour refléter EXACTEMENT index.js */}
+                <CodeBlock 
+                  language="bash" 
+                  fileName="Terminal Output"
+                  code={`🚀 Générateur de Site Web Ultime
+
+? Quel est le nom de ton projet ? (mon-site-web)
+> mon-super-projet
+
+? Quel template veux-tu utiliser ?
+  1) Site Vide (HTML/CSS basique)
+  2) Bootstrap 5
+  3) Tailwind CSS
+> 3
+
+? Initialiser un dépôt Git (git init) ? (Y/n)
+> Y`}
+                />
               </li>
               <li className="mb-10 ml-6">
                 <span className="absolute flex items-center justify-center w-8 h-8 bg-white dark:bg-brand-darker rounded-full -left-4 ring-4 ring-slate-50 dark:ring-brand-dark border border-slate-200 dark:border-brand-border text-slate-400 dark:text-brand-muted">
                   2
                 </span>
-                <h3 className="mb-1 text-lg font-semibold text-slate-900 dark:text-white">Sélectionner un Template</h3>
-                <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">Utilisez les flèches du clavier pour choisir votre base.</p>
-                <CodeBlock 
-                  language="bash" 
-                  fileName="Terminal Output"
-                  code={`? Select a template: › - Use arrow-keys. Return to submit.
-❯   Vanilla (HTML/CSS/JS)
-    Bootstrap 5
-    Tailwind CSS`}
-                />
+                <h3 className="mb-1 text-lg font-semibold text-slate-900 dark:text-white">Génération Automatique</h3>
+                <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">
+                  L'outil crée le dossier, télécharge les structures et configure Git.
+                </p>
+                <div className="font-mono text-xs text-green-400 bg-black p-3 rounded border border-gray-800">
+                  📁 Structure créée : mon-super-projet/ (css, js, img)<br/>
+                  📄 Fichiers générés (html, css, js).<br/>
+                  🦊 Dépôt Git initialisé avec succès.<br/>
+                  <br/>
+                  ✅ Tout est prêt !
+                </div>
               </li>
               <li className="ml-6">
                 <span className="absolute flex items-center justify-center w-8 h-8 bg-white dark:bg-brand-darker rounded-full -left-4 ring-4 ring-slate-50 dark:ring-brand-dark border border-slate-200 dark:border-brand-border text-slate-400 dark:text-brand-muted">
                   3
                 </span>
-                <h3 className="mb-1 text-lg font-semibold text-slate-900 dark:text-white">Start Coding</h3>
-                <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">Entrez dans le dossier. Puisque c'est un site statique, aucune installation n'est requise.</p>
-                <TerminalBlock command="cd mon-projet" />
+                <h3 className="mb-1 text-lg font-semibold text-slate-900 dark:text-white">Commencez à coder</h3>
+                <TerminalBlock command="cd mon-super-projet" />
                 <p className="mt-4 text-sm text-slate-600 dark:text-brand-text">
-                  Ensuite, ouvrez simplement le fichier <code className="text-brand-accent font-mono">index.html</code> dans votre navigateur, ou utilisez une extension comme "Live Server" sur VSCode.
+                  Ouvrez <code className="text-brand-accent font-mono">index.html</code>. Tout est déjà relié !
                 </p>
               </li>
             </ol>
@@ -498,33 +511,33 @@ const App: React.FC = () => {
 
           <Section id="templates" title="Les Templates">
             <p className="mb-8">
-              Trois options simples pour démarrer vos projets. Les frameworks CSS sont inclus via CDN pour une utilisation immédiate sans configuration.
+              Choisissez parmi 3 bases solides. Le code HTML généré inclut déjà les balises &lt;link&gt; et &lt;script&gt; nécessaires.
             </p>
             <div className="grid lg:grid-cols-2 gap-6">
               <TemplateCard 
-                title="Vanilla" 
-                desc="Le strict minimum. Une structure de dossiers vide avec HTML/CSS de base." 
+                title="Site Vide" 
+                desc="Le HTML5 Boilerplate classique. Juste ce qu'il faut pour démarrer from scratch." 
                 icon="fa-brands fa-html5"
-                features={['HTML5 Boilerplate', 'Fichier CSS lié', 'Fichier JS lié', 'Aucune librairie externe']}
-              />
-              <TemplateCard 
-                title="Tailwind CSS" 
-                desc="Script CDN Tailwind inclus dans le head. Idéal pour le prototypage rapide." 
-                icon="fa-solid fa-wind"
-                features={['Tailwind via CDN', 'Config script incluse', 'Pas de PostCSS requis', 'Design utility-first']}
+                features={['Structure HTML5 valide', 'Lien style.css inclus', 'Lien script.js inclus', 'Body simple avec H1']}
               />
               <TemplateCard 
                 title="Bootstrap 5" 
-                desc="L'intégration classique via CDN de Bootstrap 5.3." 
+                desc="Tout est pré-configuré pour Bootstrap 5.3 via CDN." 
                 icon="fa-brands fa-bootstrap"
-                features={['Bootstrap 5.3 CDN', 'Bootstrap Icons CDN', 'Bundle JS inclus', 'Composants prêts']}
+                features={['Bootstrap 5.3 CSS & JS', 'Container responsive', 'Exemple: Alert & Bouton', 'Style.css prêt pour la surcharge']}
+              />
+              <TemplateCard 
+                title="Tailwind CSS" 
+                desc="Intégration instantanée de Tailwind via le script CDN." 
+                icon="fa-solid fa-wind"
+                features={['Script Tailwind CDN', 'Classes utilitaires actives', 'Exemple: Boutons colorés', 'Configuration zéro-build']}
               />
             </div>
           </Section>
 
           <Section id="structure" title="Structure de fichiers">
             <p className="mb-6">
-              La structure générée est plate et intuitive. Il n'y a pas de dossier <code className="text-brand-accent font-mono">src</code> complexe ni de fichiers de configuration de bundler.
+              Voici exactement ce que l'outil génère sur votre disque dur. Notez la présence du dossier <code className="text-brand-accent font-mono">img</code> et du <code className="text-brand-accent font-mono">.gitignore</code>.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -532,15 +545,15 @@ const App: React.FC = () => {
               <div className="space-y-4">
                 <div className="p-4 rounded bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border shadow-sm">
                   <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">index.html</h4>
-                  <p className="text-xs text-slate-500 dark:text-brand-muted">Votre page principale. Les liens vers CSS/JS sont déjà faits.</p>
+                  <p className="text-xs text-slate-500 dark:text-brand-muted">Point d'entrée avec les balises meta et les imports CSS/JS selon le template.</p>
                 </div>
                 <div className="p-4 rounded bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border shadow-sm">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">css/style.css</h4>
-                  <p className="text-xs text-slate-500 dark:text-brand-muted">Feuille de style de base (vide ou avec imports selon le template).</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">.gitignore</h4>
+                  <p className="text-xs text-slate-500 dark:text-brand-muted">Ignore automatiquement les node_modules et fichiers systèmes (DS_Store).</p>
                 </div>
                 <div className="p-4 rounded bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border shadow-sm">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">js/script.js</h4>
-                  <p className="text-xs text-slate-500 dark:text-brand-muted">Votre point d'entrée JavaScript, chargé en fin de body.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Dossiers (css, js, img)</h4>
+                  <p className="text-xs text-slate-500 dark:text-brand-muted">Organisation propre dès le début du projet.</p>
                 </div>
               </div>
             </div>
@@ -548,17 +561,16 @@ const App: React.FC = () => {
 
           <Section id="contribution" title="Contribution">
             <p className="mb-6">
-              Ce projet est Open Source et vit grâce à la communauté. Toute contribution est la bienvenue !
+              Ce projet est Open Source. Aidez-nous à ajouter de nouveaux templates (React, Vue ?) !
             </p>
             <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/50 dark:to-purple-900/50 border border-indigo-100 dark:border-indigo-500/30 rounded-xl p-8 text-center">
               <i className="fa-solid fa-code-branch text-4xl text-indigo-500 dark:text-white mb-4"></i>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Envie de participer ?</h3>
               <p className="text-slate-600 dark:text-brand-muted mb-6 max-w-lg mx-auto">
-                Forkez le projet, créez une branche feature, et proposez une Pull Request.
-                Consultez le fichier CONTRIBUTING.md pour plus de détails.
+                Forkez le projet, améliorez le fichier <code>index.js</code> et proposez une Pull Request.
               </p>
               <a 
-                href="https://github.com/Orochichrys" 
+                href="https://github.com/Orochichrys/mon-generateur-web" 
                 target="_blank" 
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 dark:bg-white text-white dark:text-brand-dark font-bold rounded-full hover:bg-indigo-700 dark:hover:bg-brand-accent dark:hover:text-white transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/30"
@@ -568,9 +580,9 @@ const App: React.FC = () => {
               </a>
             </div>
             
-            <footer className="mt-10 pt-6 border-t border-slate-200 dark:border-brand-border text-center text-sm text-slate-400 dark:text-brand-muted">
+            <footer className="mt-4 pt-4 border-t border-slate-200 dark:border-brand-border text-center text-sm text-slate-400 dark:text-brand-muted">
               <p>&copy; {new Date().getFullYear()} Orochichrys. MIT License.</p>
-              <p className="mt-2">Made with <i className="fa-solid fa-heart text-red-500 mx-1"></i> for developers.</p>
+              <p className="mt-1">Fait avec <i className="fa-solid fa-heart text-red-500 mx-1"></i> pour les devs.</p>
             </footer>
           </Section>
 
