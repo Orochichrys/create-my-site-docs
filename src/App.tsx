@@ -147,7 +147,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
 
           <div className="h-4 w-px bg-slate-200 dark:bg-brand-border hidden sm:block"></div>
 
-          <div className="flex items-center gap-4">
+          {/* Les icônes sociales sont cachées sur mobile (hidden) et visibles sur écran large (sm:flex) */}
+          <div className="hidden sm:flex items-center gap-4">
             <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
               <i className="fa-brands fa-github"></i>
             </a>
@@ -160,7 +161,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
     </header>
   );
 };
-
 const Sidebar: React.FC<{ isOpen: boolean, onClose: () => void, activeSection: string, version: string }> = ({ isOpen, onClose, activeSection, version }) => {
   const navItemsV1 = [
     { id: 'introduction', label: 'Introduction', icon: 'fa-solid fa-info-circle' },
