@@ -146,9 +146,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
           </button>
 
           <div className="h-4 w-px bg-slate-200 dark:bg-brand-border hidden sm:block"></div>
-
-          {/* Les icônes sociales sont cachées sur mobile (hidden) et visibles sur écran large (sm:flex) */}
-          <div className="hidden sm:flex items-center gap-4">
+          
+          <div className="flex items-center gap-4">
             <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
               <i className="fa-brands fa-github"></i>
             </a>
@@ -277,7 +276,9 @@ const TemplateCard: React.FC<{ title: string, desc: string, icon: string, featur
 );
 
 const FileTree: React.FC = () => (
-  <div className="font-mono text-sm bg-slate-900 dark:bg-brand-darker border border-slate-700 dark:border-brand-border p-6 rounded-xl text-slate-300 dark:text-brand-muted leading-relaxed">
+  // Ajout de 'overflow-x-auto' pour le scroll horizontal sur mobile
+  // Réduction du padding mobile : p-4 au lieu de p-6
+  <div className="font-mono text-sm bg-slate-900 dark:bg-brand-darker border border-slate-700 dark:border-brand-border p-4 md:p-6 rounded-xl text-slate-300 dark:text-brand-muted leading-relaxed overflow-x-auto">
     <pre>{`mon-site-web/
 ├── .git/               # Initialisé automatiquement
 ├── .gitignore          # Exclut node_modules, etc.
@@ -289,7 +290,6 @@ const FileTree: React.FC = () => (
 └── img/                # Dossier images (vide)`}</pre>
   </div>
 );
-
 const CommonIntro = () => (
   <>
     <p className="mb-4 text-lg text-slate-600 dark:text-brand-muted">
