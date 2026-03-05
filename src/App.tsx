@@ -34,10 +34,10 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-brand-border z-50 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between px-4 lg:px-8">
+      <div className="max-w-7xl mx-auto w-full h-full flex items-center justify-between px-3 sm:px-4 lg:px-8">
         
         {/* GAUCHE : Menu Burger + Logo + Version */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
           <button 
             onClick={onMenuClick}
             className="lg:hidden text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors p-1"
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
             <div className="relative" ref={dropdownRef}>
               <button 
                 onClick={() => setIsVersionOpen(!isVersionOpen)}
-                className="flex items-center gap-1.5 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 hover:bg-indigo-200 dark:hover:bg-indigo-500/20 transition-colors cursor-pointer select-none"
+                className="flex items-center gap-1 text-[9px] sm:text-[10px] font-mono font-medium px-1.5 sm:px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 hover:bg-indigo-200 dark:hover:bg-indigo-500/20 transition-colors cursor-pointer select-none"
               >
                 {currentVersion}
                 <i className={`fa-solid fa-chevron-down text-[8px] transition-transform duration-200 ${isVersionOpen ? 'rotate-180' : ''}`}></i>
@@ -110,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
         </div>
 
         {/* DROITE : Thème + Réseaux sociaux */}
-        <div className="flex items-center gap-3 sm:gap-6">
+        <div className="flex items-center gap-2 sm:gap-6 shrink-0">
           <button 
             onClick={toggleTheme}
             className={`
@@ -146,11 +146,11 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isDark, toggleTheme, curre
 
           <div className="h-4 w-px bg-slate-200 dark:bg-brand-border hidden sm:block"></div>
           
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
+          <div className="hidden sm:flex items-center gap-3 sm:gap-4">
+            <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-lg sm:text-xl">
               <i className="fa-brands fa-github"></i>
             </a>
-            <a href="https://www.npmjs.com/package/create-my-site" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-xl">
+            <a href="https://www.npmjs.com/package/create-my-site" target="_blank" rel="noopener noreferrer" className="text-slate-500 dark:text-brand-muted hover:text-slate-900 dark:hover:text-white transition-colors text-lg sm:text-xl">
               <i className="fa-brands fa-npm"></i>
             </a>
           </div>
@@ -215,6 +215,18 @@ const Sidebar: React.FC<{ isOpen: boolean, onClose: () => void, activeSection: s
             </a>
           ))}
         </nav>
+        
+        <div className="p-4 pt-8 mt-8 border-t border-slate-100 dark:border-white/5 lg:hidden">
+          <div className="flex items-center justify-center gap-6">
+            <a href="https://github.com/Orochichrys/mon-generateur-web" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors text-2xl">
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.npmjs.com/package/create-my-site" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors text-2xl">
+              <i className="fa-brands fa-npm"></i>
+            </a>
+          </div>
+          <p className="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-widest font-bold">create-my-site Docs</p>
+        </div>
       </aside>
     </>
   );
@@ -228,8 +240,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ code, language, fileName }) => (
         <button className="text-slate-400 hover:text-brand-accent transition-colors"><i className="fa-regular fa-copy"></i></button>
       </div>
     )}
-    <pre className="p-4 bg-white dark:bg-brand-dark overflow-x-auto">
-      <code className={`language-${language} text-sm font-mono text-slate-800 dark:text-brand-text`}>
+    <pre className="p-4 bg-white dark:bg-brand-dark overflow-x-auto scrollbar-thin">
+      <code className={`language-${language} text-xs sm:text-sm font-mono text-slate-800 dark:text-brand-text break-words sm:break-normal`}>
         {code}
       </code>
     </pre>
@@ -245,10 +257,10 @@ const TerminalBlock: React.FC<{ command: string }> = ({ command }) => (
         <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/40"></div>
       </div>
     </div>
-    <div className="p-4 flex items-center gap-3">
+    <div className="p-4 flex items-center gap-3 overflow-x-auto scrollbar-thin">
       <span className="text-brand-accent font-bold">$</span>
-      <code className="text-brand-text text-sm">{command}</code>
-      <button className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-slate-500 hover:text-white">
+      <code className="text-brand-text text-xs sm:text-sm whitespace-nowrap">{command}</code>
+      <button className="ml-auto opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-slate-500 hover:text-white flex-shrink-0">
         <i className="fa-regular fa-copy"></i>
       </button>
     </div>
@@ -257,8 +269,8 @@ const TerminalBlock: React.FC<{ command: string }> = ({ command }) => (
 
 const Section: React.FC<SectionProps> = ({ id, title, children }) => (
   <section id={id} className="py-12 first:pt-0 border-b border-slate-200 dark:border-brand-border last:border-0 scroll-mt-24">
-    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight flex items-center gap-3">
-      <span className="w-1 h-8 bg-brand-accent rounded-full"></span>
+    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 tracking-tight flex items-center gap-3">
+      <span className="w-1 h-6 sm:h-8 bg-brand-accent rounded-full"></span>
       {title}
     </h2>
     <div className="text-slate-600 dark:text-brand-muted leading-relaxed space-y-6">
@@ -414,7 +426,7 @@ const ContentV120: React.FC = () => (
 
     <Section id="guide" title="Guide de Démarrage">
       <p className="mb-6">L'outil offre deux modes d'utilisation : un menu interactif complet ou des commandes directes via CLI.</p>
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">1. Mode Interactif</h4>
           <CodeBlock language="bash" fileName="Menu Interactif v1.2.0" code={`$ npx create-my-site
@@ -530,7 +542,7 @@ const ContentV110: React.FC = () => (
 
     <Section id="guide" title="Guide de Démarrage">
       <p className="mb-6">L'outil offre maintenant deux modes d'utilisation : Interactif et Automatique.</p>
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">1. Mode Interactif</h4>
           <CodeBlock language="bash" fileName="Terminal" code={`$ npx create-my-site
