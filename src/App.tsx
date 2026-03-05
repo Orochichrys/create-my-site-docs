@@ -295,8 +295,7 @@ const FileTree: React.FC = () => (
 ├── .git/
 ├── index.html
 ├── style.css
-├── script.js
-└── README.md`}</pre>
+└── script.js`}</pre>
   </div>
 );
 
@@ -342,10 +341,6 @@ const CommonStructure = () => (
       <div className="p-4 rounded bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border shadow-sm">
         <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Fichiers de base</h4>
         <p className="text-xs text-slate-500 dark:text-brand-muted">Une structure propre avec index.html, style.css et script.js prêt à l'emploi.</p>
-      </div>
-      <div className="p-4 rounded bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border shadow-sm">
-        <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">README Personnalisé</h4>
-        <p className="text-xs text-slate-500 dark:text-brand-muted">Des instructions claires générées spécifiquement pour votre projet.</p>
       </div>
     </div>
   </div>
@@ -396,7 +391,7 @@ const ContentV120: React.FC = () => (
         <i className="fa-solid fa-rocket mt-0.5"></i>
         <div><strong>Version v1.2.0 :</strong> Le CLI devient une véritable station de travail (Auto-Push, SEO, Dark Mode & Assets Pro).</div>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="p-4 bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border rounded-lg shadow-sm">
           <i className="fa-brands fa-github text-slate-900 dark:text-white mb-2 text-xl"></i>
           <h4 className="font-bold text-slate-900 dark:text-white mb-1">Auto-Push</h4>
@@ -412,13 +407,18 @@ const ContentV120: React.FC = () => (
           <h4 className="font-bold text-slate-900 dark:text-white mb-1">Dark Mode</h4>
           <p className="text-sm text-slate-500 dark:text-brand-muted">Support natif pour Tailwind et Bootstrap.</p>
         </div>
+        <div className="p-4 bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border rounded-lg shadow-sm">
+          <i className="fa-solid fa-download text-emerald-500 mb-2 text-xl"></i>
+          <h4 className="font-bold text-slate-900 dark:text-white mb-1">Local-Lock</h4>
+          <p className="text-sm text-slate-500 dark:text-brand-muted">Télécharge les bibliothèques en local (Bootstrap).</p>
+        </div>
       </div>
       <CommonIntro />
       <p className="mt-4 text-sm font-medium text-slate-500 dark:text-brand-muted"><i className="fa-solid fa-circle-info mr-2"></i>Requis : Node.js doit être installé sur votre machine.</p>
     </Section>
 
     <Section id="installation" title="Installation">
-      <TerminalBlock command="npx create-my-site" />
+      <TerminalBlock command="npx create-my-site@latest" />
       <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg text-sm text-blue-800 dark:text-blue-200">
         Pas besoin d'installation globale. Lancez et créez !
       </div>
@@ -429,7 +429,7 @@ const ContentV120: React.FC = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">1. Mode Interactif</h4>
-          <CodeBlock language="bash" fileName="Menu Interactif v1.2.0" code={`$ npx create-my-site
+          <CodeBlock language="bash" fileName="Menu Interactif v1.2.0" code={`$ npx create-my-site@latest
       
 🚀 CMS Generator v1.2.0 - Configuration Interactive
 
@@ -443,7 +443,7 @@ const ContentV120: React.FC = () => (
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-pink-600 dark:text-pink-400">2. Mode Expert (CLI)</h4>
           <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">Gagnez du temps en passant tous vos paramètres directement en ligne de commande.</p>
-          <TerminalBlock command="npx create-my-site mon-projet -t tailwind --dark --push" />
+          <TerminalBlock command="npx create-my-site@latest mon-projet -t tailwind --dark --push" />
           <p className="text-xs text-slate-400 dark:text-brand-muted mt-2 italic">Astuce : L'argument [name] est le premier paramètre attendu.</p>
         </div>
       </div>
@@ -535,7 +535,7 @@ const ContentV110: React.FC = () => (
     <Section id="installation" title="Installation">
       <p className="mb-4">Vous pouvez utiliser l'outil directement via <code className="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-sm text-brand-accent font-mono">npx</code> (recommandé) ou l'installer globalement.</p>
       <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Méthode Recommandée</h3>
-      <TerminalBlock command="npx create-my-site" />
+      <TerminalBlock command="npx create-my-site@latest" />
       <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Installation mondiale</h3>
       <TerminalBlock command="npm install -g create-my-site" />
     </Section>
@@ -545,7 +545,7 @@ const ContentV110: React.FC = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">1. Mode Interactif</h4>
-          <CodeBlock language="bash" fileName="Terminal" code={`$ npx create-my-site
+          <CodeBlock language="bash" fileName="Terminal" code={`$ npx create-my-site@latest
 
 🚀 Générateur de Site Web Ultime
 ? Quel est le nom de ton projet ? mon-site-web
@@ -554,7 +554,7 @@ const ContentV110: React.FC = () => (
         </div>
         <div className="p-5 border border-slate-200 dark:border-brand-border rounded-xl bg-white dark:bg-brand-darker">
           <h4 className="font-bold text-lg mb-2 text-pink-600 dark:text-pink-400">2. Mode Expert (CLI)</h4>
-          <TerminalBlock command="npx create-my-site mon-projet -t tailwind" />
+          <TerminalBlock command="npx create-my-site@latest mon-projet -t tailwind" />
         </div>
       </div>
     </Section>
@@ -622,11 +622,11 @@ const ContentV100: React.FC = () => (
       <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Installation mondiale</h3>
       <TerminalBlock command="npm install -g create-my-site" />
       <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">Usage temporaire</h3>
-      <TerminalBlock command="npx create-my-site" />
+      <TerminalBlock command="npx create-my-site@latest" />
     </Section>
 
     <Section id="guide" title="Guide de Démarrage">
-      <CodeBlock language="bash" fileName="Sortie terminale" code={`$ npx create-my-site
+      <CodeBlock language="bash" fileName="Sortie terminale" code={`$ npx create-my-site@latest
 
 🚀 Générateur de Site Web Ultime
 ? Quel est le nom de ton projet ? mon-site-web
