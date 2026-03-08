@@ -462,7 +462,7 @@ const ContentV130: React.FC = () => (
 
     <Section id="github-push" title="GitHub & Push">
       <p className="mb-4">Déployez votre projet en une seconde avec l'Auto-Push hybride :</p>
-      <ul className="space-y-4 mb-6">
+      <ul className="space-y-4 mb-8">
         <li className="flex gap-3">
           <i className="fa-solid fa-check-circle text-green-500 mt-1"></i>
           <div><strong className="text-slate-900 dark:text-white">gh CLI :</strong> Utilise vos identifiants existants si installés.</div>
@@ -476,55 +476,95 @@ const ContentV130: React.FC = () => (
           <div><strong className="text-slate-900 dark:text-white">Token Mémorisé :</strong> Votre token est sauvegardé sûrement dans <code>~/.cms-config.json</code>.</div>
         </li>
       </ul>
-      <div className="p-4 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-white/10 italic text-sm text-slate-600 dark:text-brand-muted">
-        "Déploiement GitHub instantané via API ou CLI."
+
+      <div className="space-y-6">
+        <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i className="fa-solid fa-terminal text-brand-accent"></i>
+          Exemples d'utilisation
+        </h4>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Push Automatique</p>
+            <TerminalBlock command="npx create-my-site mon-projet --push" />
+            <p className="text-[10px] text-slate-400 mt-2">Crée le dépôt et envoie le code vers GitHub.</p>
+          </div>
+          
+          <div className="p-4 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Avec Token Temporaire</p>
+            <TerminalBlock command="npx create-my-site mon-projet --push --token GITHUB_TOKEN" />
+            <p className="text-[10px] text-slate-400 mt-2">Passe un GitHub Token (PAT) temporaire pour l'authentification.</p>
+          </div>
+        </div>
       </div>
     </Section>
 
     <Section id="live-preview" title="Live Preview 🌐">
-      <div className="flex flex-col md:flex-row gap-6 items-center mb-6">
-        <div className="flex-1">
+      <div className="flex flex-col gap-8 mb-6">
+        <div>
           <p className="mb-4">Le <strong>Live Preview</strong> transforme votre flux de travail. Plus besoin de naviguer manuellement dans vos dossiers pour ouvrir le fichier HTML.</p>
-          <ul className="space-y-3 mb-6">
-            <li className="flex gap-2 text-sm text-slate-600 dark:text-brand-muted">
-              <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-              <span><strong>Option --serve :</strong> Lance un serveur local immédiatement après la génération.</span>
-            </li>
-            <li className="flex gap-2 text-sm text-slate-600 dark:text-brand-muted">
-              <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-              <span><strong>Port 3000 :</strong> Accessible sur <code>http://localhost:3000</code>.</span>
-            </li>
-            <li className="flex gap-2 text-sm text-slate-600 dark:text-brand-muted">
-              <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-              <span><strong>Ouverture Automatique :</strong> Le CLI ouvre votre navigateur par défaut pour vous.</span>
-            </li>
-          </ul>
           
-          <h4 className="font-bold text-slate-900 dark:text-white mb-3">Commande Serve</h4>
-          <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">Vous pouvez également lancer le serveur pour un projet existant :</p>
-          <div className="space-y-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Dans le dossier du projet</p>
-              <TerminalBlock command="npx create-my-site serve" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Nouveau Projet */}
+            <div className="p-6 border border-slate-200 dark:border-brand-border rounded-2xl bg-white dark:bg-brand-darker shadow-sm">
+              <h4 className="font-bold text-lg mb-4 text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
+                <i className="fa-solid fa-plus-circle"></i>
+                Démarrer un nouveau projet
+              </h4>
+              <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">
+                Générez votre projet et lancez le serveur immédiatement avec l'option <code>--serve</code>.
+              </p>
+              <TerminalBlock command="npx create-my-site@latest mon-projet -t bootstrap --serve" />
+              <ul className="space-y-2 mt-4">
+                <li className="flex gap-2 text-xs text-slate-400 dark:text-brand-muted">
+                  <i className="fa-solid fa-check text-emerald-500"></i>
+                  Génération automatique du site
+                </li>
+                <li className="flex gap-2 text-xs text-slate-400 dark:text-brand-muted">
+                  <i className="fa-solid fa-check text-emerald-500"></i>
+                  Ouverture auto du navigateur sur le port 3000
+                </li>
+              </ul>
             </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">En spécifiant le dossier</p>
-              <TerminalBlock command="npx create-my-site serve ./mon-projet" />
+
+            {/* Projet Existant */}
+            <div className="p-6 border border-slate-200 dark:border-brand-border rounded-2xl bg-white dark:bg-brand-darker shadow-sm">
+              <h4 className="font-bold text-lg mb-4 text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                <i className="fa-solid fa-folder-open"></i>
+                Pour un projet existant
+              </h4>
+              <p className="text-sm text-slate-500 dark:text-brand-muted mb-4">
+                Utilisez la commande <code>serve</code> pour prévisualiser n'importe quel dossier local.
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Dans le dossier actuel</p>
+                  <TerminalBlock command="npx create-my-site serve" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1">En spécifiant le dossier</p>
+                  <TerminalBlock command="npx create-my-site serve ./mon-projet" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/3 p-4 bg-slate-900 rounded-lg border border-slate-700 self-start">
-           <div className="flex gap-1.5 mb-3">
-             <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-             <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
-             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-           </div>
-           <div className="font-mono text-[10px] text-emerald-400">
-             <div>$ npx create-my-site --serve</div>
-             <div className="text-white mt-1">...</div>
-             <div className="text-indigo-400">Server running...</div>
-             <div className="text-indigo-400">http://localhost:3000</div>
-           </div>
+
+        <div className="bg-slate-900 rounded-2xl border border-slate-800 p-6 overflow-hidden relative">
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-6xl text-brand-accent">
+            <i className="fa-solid fa-terminal"></i>
+          </div>
+          <div className="flex gap-1.5 mb-4">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+            <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+          </div>
+          <div className="font-mono text-sm space-y-2">
+            <div className="text-emerald-400">$ npx create-my-site serve ./mon-projet</div>
+            <div className="text-slate-500">...</div>
+            <div className="text-indigo-400 animate-pulse">🌍 Serveur démarré sur http://localhost:3000</div>
+            <div className="text-indigo-400">🚀 Ouverture du navigateur...</div>
+          </div>
         </div>
       </div>
     </Section>
@@ -645,9 +685,9 @@ const ContentV130: React.FC = () => (
 const ContentV120: React.FC = () => (
   <>
     <Section id="introduction" title="Introduction">
-      <div className="p-4 mb-6 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 rounded-lg flex gap-3 text-sm text-indigo-800 dark:text-indigo-200">
-        <i className="fa-solid fa-rocket mt-0.5"></i>
-        <div><strong>Version v1.2.0 :</strong> Le CLI devient une véritable station de travail (Auto-Push, SEO, Dark Mode & Assets Pro).</div>
+      <div className="p-4 mb-6 bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-200 dark:border-yellow-200/20 rounded-lg flex gap-3 text-sm text-yellow-800 dark:text-yellow-200">
+        <i className="fa-solid fa-triangle-exclamation mt-0.5"></i>
+        <div><strong>Version v1.2.0 (Ancienne version) :</strong> Le CLI devient une véritable station de travail (Auto-Push, SEO, Dark Mode & Assets Pro).</div>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="p-4 bg-white dark:bg-brand-darker border border-slate-200 dark:border-brand-border rounded-lg shadow-sm">
@@ -709,7 +749,7 @@ const ContentV120: React.FC = () => (
 
     <Section id="github-push" title="GitHub & Push">
       <p className="mb-4">Déployez votre projet en une seconde avec l'Auto-Push hybride :</p>
-      <ul className="space-y-4 mb-6">
+      <ul className="space-y-4 mb-8">
         <li className="flex gap-3">
           <i className="fa-solid fa-check-circle text-green-500 mt-1"></i>
           <div><strong className="text-slate-900 dark:text-white">gh CLI :</strong> Utilise vos identifiants existants si installés.</div>
@@ -723,8 +763,26 @@ const ContentV120: React.FC = () => (
           <div><strong className="text-slate-900 dark:text-white">Token Mémorisé :</strong> Votre token est sauvegardé sûrement dans <code>~/.cms-config.json</code>.</div>
         </li>
       </ul>
-      <div className="p-4 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-white/10 italic text-sm text-slate-600 dark:text-brand-muted">
-        "Une véritable station de travail pour les développeurs front-end."
+
+      <div className="space-y-6">
+        <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i className="fa-solid fa-terminal text-brand-accent"></i>
+          Exemples d'utilisation
+        </h4>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Push Automatique</p>
+            <TerminalBlock command="npx create-my-site mon-projet --push" />
+            <p className="text-[10px] text-slate-400 mt-2">Crée le dépôt et envoie le code vers GitHub.</p>
+          </div>
+          
+          <div className="p-4 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Avec Token Temporaire</p>
+            <TerminalBlock command="npx create-my-site mon-projet --push --token GITHUB_TOKEN" />
+            <p className="text-[10px] text-slate-400 mt-2">Passe un GitHub Token temporaire pour l'authentification.</p>
+          </div>
+        </div>
       </div>
     </Section>
 
